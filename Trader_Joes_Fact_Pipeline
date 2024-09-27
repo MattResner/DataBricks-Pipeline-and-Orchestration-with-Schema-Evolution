@@ -1,0 +1,90 @@
+{
+  "job_id": 1079251445229917,
+  "creator_user_name": "matthew.resner@group1001.com",
+  "run_as_user_name": "matthew.resner@group1001.com",
+  "run_as_owner": true,
+  "settings": {
+    "name": "Trader_Joes_Fact_Pipeline",
+    "email_notifications": {
+      "no_alert_for_skipped_runs": false
+    },
+    "webhook_notifications": {},
+    "timeout_seconds": 0,
+    "max_concurrent_runs": 1,
+    "tasks": [
+      {
+        "task_key": "Bronze_Layer_Ingestion_with_Schema_Evolution",
+        "run_if": "ALL_SUCCESS",
+        "notebook_task": {
+          "notebook_path": "/Workspace/Users/matthew.resner@group1001.com/Databricks Schema Evolution POC/2. Bronze Fact Pipeline",
+          "source": "WORKSPACE"
+        },
+        "existing_cluster_id": "0801-194747-f0qk6m1o",
+        "timeout_seconds": 0,
+        "email_notifications": {},
+        "notification_settings": {
+          "no_alert_for_skipped_runs": false,
+          "no_alert_for_canceled_runs": false,
+          "alert_on_last_attempt": false
+        },
+        "webhook_notifications": {}
+      },
+      {
+        "task_key": "Silver_Layer",
+        "depends_on": [
+          {
+            "task_key": "Bronze_Layer_Ingestion_with_Schema_Evolution"
+          }
+        ],
+        "run_if": "ALL_SUCCESS",
+        "notebook_task": {
+          "notebook_path": "/Workspace/Users/matthew.resner@group1001.com/Databricks Schema Evolution POC/5. Silver Fact Pipeline",
+          "source": "WORKSPACE"
+        },
+        "existing_cluster_id": "0801-194747-f0qk6m1o",
+        "timeout_seconds": 0,
+        "email_notifications": {},
+        "notification_settings": {
+          "no_alert_for_skipped_runs": false,
+          "no_alert_for_canceled_runs": false,
+          "alert_on_last_attempt": false
+        },
+        "webhook_notifications": {}
+      },
+      {
+        "task_key": "Gold_Layer",
+        "depends_on": [
+          {
+            "task_key": "Silver_Layer"
+          }
+        ],
+        "run_if": "ALL_SUCCESS",
+        "notebook_task": {
+          "notebook_path": "/Workspace/Users/matthew.resner@group1001.com/Databricks Schema Evolution POC/6. Gold Fact Pipeline",
+          "source": "WORKSPACE"
+        },
+        "existing_cluster_id": "0801-194747-f0qk6m1o",
+        "timeout_seconds": 0,
+        "email_notifications": {
+          "on_success": [
+            "resnermatt@gmail.com"
+          ],
+          "on_failure": [
+            "resnermatt@gmail.com"
+          ]
+        },
+        "notification_settings": {
+          "no_alert_for_skipped_runs": false,
+          "no_alert_for_canceled_runs": false,
+          "alert_on_last_attempt": false
+        },
+        "webhook_notifications": {}
+      }
+    ],
+    "format": "MULTI_TASK",
+    "queue": {
+      "enabled": true
+    }
+  },
+  "created_time": 1727454246383
+}
