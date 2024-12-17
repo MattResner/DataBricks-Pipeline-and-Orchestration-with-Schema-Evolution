@@ -1,6 +1,8 @@
 # Databricks Pipeline with Schema Evolution and Medallion Architecture
 
-This project demonstrates the development of a robust data pipeline in Databricks with simulated data from Trader Joes Stores, focusing on schema evolution and efficient data orchestration. The pipeline processes data through a typical multi hop architecture with stages—Bronze, Silver, and Gold—ensuring data quality and facilitating analytics with one source of truth (rather than many downstream semantic models).
+This project demonstrates the development of a robust data pipeline in Databricks with simulated data from Trader Joes Stores, focusing on schema evolution and efficient data orchestration. 
+
+The pipeline processes data through a typical multi hop architecture with stages—Bronze, Silver, and Gold—ensuring data quality and facilitating analytics with one source of truth (rather than many downstream semantic models).
 
 ## Project Structure
 
